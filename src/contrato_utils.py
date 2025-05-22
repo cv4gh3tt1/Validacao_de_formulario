@@ -1,4 +1,6 @@
-def gerar_contrato(e, page, dict_values, campos_do_formulario):
+
+
+def gerar_contrato(e, campos_do_formulario, dict_values, page):
 
     # 1. Limpar erros de validações anteriores de todos os campos
     for campo in campos_do_formulario:
@@ -29,11 +31,13 @@ def gerar_contrato(e, page, dict_values, campos_do_formulario):
         return
 
     # 3. Se todos os campos estiverem válidos, popular o dict_values.
-    dict_values["contratante"] = contratante.value or ""
-    dict_values["contratante"] = contratante.value or ""
-    dict_values["medida_judicial"] = medida_judicial.value or ""
-    dict_values["outra_parte"] = outra_parte.value or ""
-    dict_values["prolabore"] = prolabore.value or ""
-    dict_values["exito"] = exito.value or ""
-    dict_values["foro"] = foro.value or ""
-    dict_values["data"] = data.value or ""
+    dict_values["contratante"] = campos_do_formulario[0].value or ""
+    dict_values["medida_judicial"] = campos_do_formulario[1].value or ""
+    dict_values["outra_parte"] = campos_do_formulario[2].value or ""
+    dict_values["prolabore"] = campos_do_formulario[3].value or ""
+    dict_values["exito"] = campos_do_formulario[4].value or ""
+    dict_values["foro"] = campos_do_formulario[5].value or ""
+    dict_values["data"] = campos_do_formulario[6].value or ""
+    page.update()
+
+    print("gerando contrato...")
