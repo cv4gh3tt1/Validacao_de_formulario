@@ -15,6 +15,7 @@ def main(page: ft.Page):
         color=ft.Colors.BLUE_900,
         text_align=ft.TextAlign.CENTER,
     )
+    #
     dict_values = {
         "contratante": "",
         "medida_judicial": "",
@@ -32,8 +33,19 @@ def main(page: ft.Page):
     )
     medida_judicial = ft.TextField(label="Medida Judicial")
     outra_parte = ft.TextField(label="Outra Parte")
-    prolabore = ft.TextField(label="Prolabore", prefix_text="R$ ")
-    exito = ft.TextField(label="Exito", suffix_text="%")
+    prolabore = ft.TextField(
+        label="Prolabore",
+        prefix_text="R$ ",
+        keyboard_type=ft.KeyboardType.NUMBER,
+        on_change=lambda e: contrato_utils.validar_numero_decimal(prolabore, page),
+        on_blur=lambda e: contrato_utils.padronizar_decimal(prolabore, page),
+    )
+    exito = ft.TextField(
+        label="Exito",
+        on_change=lambda e: contrato_utils.validar_numero_decimal(exito, page),
+        on_blur=lambda e: contrato_utils.padronizar_decimal(exito, page),
+        suffix_text="%",
+    )
     foro = ft.TextField(label="Foro")
     data = ft.TextField(label="Data")
 
